@@ -20,6 +20,7 @@ export default function Navbar() {
 
         {/* Main nav */}
         <div className="hidden md:flex items-center gap-1 flex-1">
+          <NavLink href="/kozosseg">Közösség</NavLink>
           <NavLink href="/forum">Fórum</NavLink>
           <NavLink href="/hirdetesek">Hirdetések</NavLink>
           <NavLink href="/tagok">Tagok</NavLink>

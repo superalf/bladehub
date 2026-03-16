@@ -1,5 +1,29 @@
 import { Timestamp } from "firebase/firestore";
 
+export interface FeedPost {
+  id: string;
+  authorUid: string;
+  authorName: string;
+  authorAvatar?: string;
+  text: string;
+  images: string[];
+  createdAt: Timestamp;
+  likes: string[];
+  commentCount: number;
+  tags: string[];
+}
+
+export interface FeedComment {
+  id: string;
+  postId: string;
+  authorUid: string;
+  authorName: string;
+  authorAvatar?: string;
+  text: string;
+  createdAt: Timestamp;
+  likes: string[];
+}
+
 export interface User {
   uid: string;
   displayName: string;

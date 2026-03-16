@@ -270,6 +270,49 @@ async function seed() {
     console.log(`  ✓ Listing: ${l.title.slice(0, 50)}...`);
   }
 
+  // Feed posts
+  const feedData = [
+    {
+      author: gabor,
+      text: "Ma megérkezett a Spyderco Paramilitary 2 a csomagból — az S30V acél első látásra is minőséget sugároz. Holnap megjön a King 3000/6000 kő is, akkor élesítés, és fotó az eredményről! 🔪",
+      daysAgo: 1,
+    },
+    {
+      author: peter,
+      text: "Hétvégi favágás a Gransfors Small Forest Axe-szal. Tölgy, bükkfa, és egy kis gyertyán. A hickory nyél megint bizonyított, semmi karcolás sem a pengén. Ajánlom mindenkinek aki komolyabb baltát keres.",
+      daysAgo: 2,
+    },
+    {
+      author: mark,
+      text: "Leatherman Wave+ vs. Gerber MP600 összehasonlítás — spoiler: a Wave+ nyert fogó és pengeminőség terén, a Gerber csak szerszámos dobozba való. Részletes write-up a fórumon hamarosan.",
+      daysAgo: 3,
+    },
+    {
+      author: gabor,
+      text: "Sikerült beszerezni egy vintage Victorinox Soldier 1961-es modellt egy svájci piacon. A penge még mindig tartja az élét, a cikk-cakk teljesen ép. Nem eladó — ez a gyűjteménybe megy! 🏆",
+      daysAgo: 5,
+    },
+    {
+      author: peter,
+      text: "Kérdés a közösségnek: érdemes-e a Mora Garberg-re költeni ha már van Companion MG-m? A Garberg full-tang, de a Companion teljesen megfelel nekem erdőn-mezőn. Vélemények?",
+      daysAgo: 7,
+    },
+  ];
+
+  for (const f of feedData) {
+    await addDoc(collection(db, "feed"), {
+      authorUid: f.author.uid,
+      authorName: f.author.displayName,
+      text: f.text,
+      images: [],
+      createdAt: past(f.daysAgo),
+      likes: [],
+      commentCount: 0,
+      tags: [],
+    });
+    console.log(`  ✓ Feed post: ${f.text.slice(0, 50)}...`);
+  }
+
   console.log("\n✅ Seed complete! Open http://localhost:3000");
   console.log("   Demo login: kesesgabor@demo.hu / demo123456");
   process.exit(0);
